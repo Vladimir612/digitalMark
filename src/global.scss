@@ -1,14 +1,6 @@
 //boje
-$naslov_bela: #0d1117;
-$tekst_bela: #10151d;
-$dugme_bela: #795298;
-
-$naslov_tamna: #fff;
-$tekst_tamna: #c9d1d9;
-$dugme_tamna: #00ffa3;
-
-$pozadina_tamna: #0d1117;
-$pozadina_bela: #fff;
+$pozadina: #17181e;
+$tekst: white;
 
 //mixins
 @mixin box-center($direction: row, $justify: center) {

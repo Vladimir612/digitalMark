@@ -1,0 +1,26 @@
+@import '../../global.scss';
+.login-page {
+  height: 100vh;
+  @include box-center($direction: column, $justify: space-around);
+  background-color: $pozadina;
+}
+.form-container {
+  width: 70%;
+  @include box-center($direction: column, $justify: center);
+}
+.form-heading {
+  margin-bottom: 2rem;
+}
+.login-form {
+  @include box-center($direction: column, $justify: space-around);
+  height: 10rem;
+
+  input {
+    background-color: $pozadina;
+    outline: none;
+    border: 1px solid white;
+    border-radius: 20px;
+    color: $tekst;
+    line-height: 1rem;
+  }
+}
