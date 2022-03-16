@@ -1,0 +1,88 @@
+@import "../../global.scss";
+
+.kartica-za-prijavu {
+  height: 40vh;
+  width: 75%;
+  //ovo je privremeno
+  //   position: absolute;
+  //   left: 20%;
+  //   top: 20%;
+}
+.wrapper-kartica {
+  @include box-center($direction: column, $justify: center);
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.top {
+  @include box-center($direction: row, $justify: space-between);
+  height: 15%;
+  width: 100%;
+  background-color: #b3b3ff;
+}
+.idPrijave {
+  margin-left: 2%;
+}
+.indikatori {
+  @include box-center($direction: row, $justify: flex-end);
+  margin-right: 2%;
+  gap: 10px;
+}
+.indikator1 {
+  background-color: yellow;
+  border-radius: 50%;
+  width: 3vh;
+  height: 3vh;
+}
+.indikator2 {
+  background-color: blue;
+  border-radius: 50%;
+  width: 3vh;
+  height: 3vh;
+}
+
+.middle {
+  @include box-center($direction: row, $justify: space-evenly);
+  height: 60%;
+  width: 100%;
+  background-color: $tekst_tamna;
+  //    overflow: hidden;
+}
+
+.buttons {
+  @include box-center($direction: row, $justify: space-evenly);
+  height: 25%;
+  width: 100%;
+  background-color: $tekst_tamna;
+}
+.dugme {
+  border-radius: 15px;
+  width: 25%;
+  height: 70%;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+  border: 2px solid grey;
+
+  // font-family: 'Roboto', sans-serif;
+  font-size: calc(0.5vw + 0.5vh + 0.3vmin);
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  border-radius: 45px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease 0s;
+  cursor: pointer;
+  outline: none;
+}
+.dugme:hover {
+  background-color: #2ee59d;
+  box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4);
+  color: #fff;
+  transform: translateY(2%);
+}
