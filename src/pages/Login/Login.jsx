@@ -4,6 +4,8 @@ import './Login.scss'
 const Login = () => {
   return (
     <div className='login-page'>
+      <div className='circle-color'></div>
+      <div className='circle-black'></div>
       <div className='form-container'>
         <h1 className='form-heading'>Sign in</h1>
         <form className='login-form'>
