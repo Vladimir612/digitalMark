@@ -1,14 +1,263 @@
 @import "../../global.scss";
 
-body {
-  background-color: #17181e;
+///////////////////////////////////////
+
+.slika-c2s {
+  width: 32.69vh;
+  margin-left: 1vh;
+  position: relative;
 }
-nav {
+/*
+.dashboard-page {
+  background-color: blue;
   height: 100vh;
 }
+*/
+li {
+  padding: 1vh;
+  margin: auto;
+  margin-left: 1.5vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  align-items: center;
+  align-content: center;
+  vertical-align: baseline;
+  position: relative;
+  display: flex;
+}
 
-.nav-tabovi {
-  list-style-type: none;
+/*
+.sidebar.close ~ .toggle-nav {
+  left: 10.2vh;
+  width: calc(100% - 78%);
+}
+*/
+
+/* Google Fonts Import Link */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 33vw;
+  background: #11101d;
+  z-index: 100;
+  transition: all 0.5s ease;
+  .logo-details {
+    justify-content: space-around;
+    padding-top: 1rem;
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    i {
+      font-size: 3.92vh;
+      color: #fff;
+      height: 6.53vh;
+      min-width: 10.2vh;
+      text-align: center;
+      line-height: 6.53vh;
+    }
+    .logo-name {
+      font-size: 2.88vh;
+      color: white;
+      font-weight: 600;
+      transition: 0.3s ease;
+      transition-delay: 0.1s;
+    }
+  }
+  .nav-links {
+    height: 100%;
+    padding: 3.92vh 0 19.61vh 0;
+    overflow: auto;
+    li {
+      position: relative;
+      list-style: none;
+      transition: all 0.4s ease;
+      .icon-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      i {
+        height: 6.53vh;
+        min-width: 10.2vh;
+        text-align: center;
+        line-height: 6.53vh;
+        color: #fff;
+        font-size: 2.62vh;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      .sub-menu {
+        padding: 0.78vh 0.78vh 1.84vh 10.53vh;
+        margin-top: -1.31vh;
+        background: #1d1b31;
+        display: none;
+        .link-name {
+          display: none;
+          
+        }
+      }
+      .sub-menu.blank {
+        opacity: 1;
+        pointer-events: auto;
+        padding: 0.4vh 2.62vh 0.78vh 2.09vh;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .naw-row {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
+    }
+    li:hover {
+      background: #1d1b31;
+      .sub-menu.blank {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+    li.showMenu {
+      i.arrow {
+        transform: rotate(-180deg);
+      }
+      .sub-menu {
+        display: block;
+      }
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .profile-details {
+    position: fixed;
+    bottom: 0;
+    width: 34vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #1d1b31;
+    padding: 3.56vh 0;
+    transition: all 0.5s ease;
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    .profile-content {
+      display: flex;
+      align-items: center;
+    }
+    img {
+      height: 6.8vh;
+      width: 6.8vh;
+      object-fit: cover;
+      border-radius: 2.09vh;
+      margin: 0 1.83vh 0 1.56vh;
+      background: #1d1b31;
+      transition: all 0.5s ease;
+    }
+    .profile-name {
+      color: #fff;
+      font-size: 2.35vh;
+      font-weight: 500;
+      white-space: nowrap;
+      padding-left: 2.3vh;
+    }
+    .job {
+      color: #fff;
+      font-size: 2.35vh;
+      font-weight: 500;
+      white-space: nowrap;
+      padding-left: 1vh;
+    }
+  }
+}
+
+// CLOSE
+.sidebar.close {
+  width: 10.2vh;
+  .logo-details {
+    .logo-name {
+      transition-delay: 0s;
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+  .nav-links {
+    overflow: visible;
+    li {
+      .icon-link {
+        display: block;
+      }
+      .sub-menu {
+        position: absolute;
+        left: 100%;
+        top: -1.31vh;
+        margin-top: 0;
+        padding: 1.31vh 2.62vh;
+        border-radius: 0 0.78vh 0.78vh 0;
+        opacity: 0;
+        display: block;
+        pointer-events: none;
+        transition: 0s;
+        .link-name {
+          font-size: 2.35vh;
+          opacity: 1;
+          display: block;
+          color: white;
+        }
+      }
+    }
+    li:hover {
+      .sub-menu {
+        top: 0;
+        opacity: 1;
+        pointer-events: auto;
+        transition: all 0.4s ease;
+      }
+    }
+    i.arrow {
+      display: none;
+    }
+  }
+  .profile-details {
+    background: none;
+    width: 10.2vh;
+    img {
+      padding: 1.31vh;
+    }
+    i {
+      display: none;
+    }
+    .profile-name {
+      display: none;
+    }
+    .job {
+      display: none;
+      font-size: 1.56vh;
+    }
+  }
+}
+
+//close
+
+.img-wrapper {
+  width: 10rem;
+  img {
+    @include fit-image;
+  }
+}
+
+//NZ
+
+
