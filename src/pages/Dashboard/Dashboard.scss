@@ -1,0 +1,9 @@
+@import "../../global.scss";
+
+.dashboard-page {
+  position: relative;
+  .content {
+    position: absolute;
+    left: 15rem;
+  }
+}
