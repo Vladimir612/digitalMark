@@ -9,9 +9,14 @@ const Dashboard = () => {
   const [aktivanTab, setAktivanTab] = useState(1);
   return (
     <div className="dashboard-page">
-      <Nav otvorenNav={otvorenNav} setOtvorenNav={setOtvorenNav} aktivanTab={aktivanTab} setAktivanTab={setAktivanTab} />
+      <Nav
+        otvorenNav={otvorenNav}
+        setOtvorenNav={setOtvorenNav}
+        aktivanTab={aktivanTab}
+        setAktivanTab={setAktivanTab}
+      />
       <div className={otvorenNav ? "content otvoren-nav" : "content"}>
-        <PrijaveList prijave={prijave} />
+        <PrijaveList prijave={prijave} aktivanTab={aktivanTab} />
       </div>
     </div>
   );

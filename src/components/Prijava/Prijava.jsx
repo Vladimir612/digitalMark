@@ -1,9 +1,8 @@
 import React from "react";
-import { useState } from "react";
 import "./Prijava.scss";
 import CustomButton from "./../../Utilities/CustomButton";
 
-const Prijava = () => {
+const Prijava = (props) => {
   const handleOcena = () => {
     console.log("oceni");
   };
@@ -16,8 +15,8 @@ const Prijava = () => {
         <div className="top">
           <div className="top_left">
             <div className="idPrijave">1</div>
-            <div className="glavniMejl">Marko Markovic</div>
           </div>
+          <div className="glavniMejl">Marko Markovic</div>
           <div className="indikatori">
             <div className="indikator1"></div>
             <div className="indikator2"></div>
@@ -60,15 +59,20 @@ const Prijava = () => {
             </p>
           </div>
         </div>
-        <div className="buttons">
-          <CustomButton onClick={handleOcena}>Izmeni ocenu</CustomButton>
-          <CustomButton onClick={handleSmestiUfinalno}>
-            Smesti u finalno
-          </CustomButton>
-        </div>
+        <div className="buttons">{props.aktivanTab === 3 && alert("poz")}</div>
       </div>
     </div>
   );
 };
 
 export default Prijava;
+
+{
+  /* <>
+              {console.log("uslo")}
+              <CustomButton onClick={handleOcena}>Izmeni ocenu</CustomButton>
+              <CustomButton onClick={handleSmestiUfinalno}>
+                Smesti u finalno
+              </CustomButton>
+            </> */
+}
