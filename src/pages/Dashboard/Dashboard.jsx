@@ -15,8 +15,13 @@ const Dashboard = () => {
         aktivanTab={aktivanTab}
         setAktivanTab={setAktivanTab}
       />
+      {/* {aktivanTab === 3 ? alert("radi u dashu") : alert("ne radi")} */}
       <div className={otvorenNav ? "content otvoren-nav" : "content"}>
-        <PrijaveList prijave={prijave} aktivanTab={aktivanTab} />
+        <PrijaveList
+          prijave={prijave}
+          aktivanTab={aktivanTab}
+          setAktivanTab={setAktivanTab}
+        />
       </div>
     </div>
   );

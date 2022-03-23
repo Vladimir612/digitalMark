@@ -59,7 +59,29 @@ const Prijava = (props) => {
             </p>
           </div>
         </div>
-        <div className="buttons">{props.aktivanTab === 3 && alert("poz")}</div>
+        <div className="buttons">
+          {props.aktivanTab === 1 && (
+            <>
+              <CustomButton onClick={handleOcena}>Oceni</CustomButton>
+            </>
+          )}
+          {props.aktivanTab === 2 && (
+            <>
+              <CustomButton onClick={handleOcena}>Izmeni ocenu</CustomButton>
+              <CustomButton onClick={handleSmestiUfinalno}>
+                Smesti u finalno
+              </CustomButton>
+            </>
+          )}
+          {props.aktivanTab === 3 && (
+            <>
+              <CustomButton onClick={handleOcena}>Izmeni ocenu</CustomButton>
+              <CustomButton onClick={handleSmestiUfinalno}>
+                Vrati u neocenjene
+              </CustomButton>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

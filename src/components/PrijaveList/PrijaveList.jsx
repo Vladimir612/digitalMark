@@ -6,7 +6,13 @@ const PrijaveList = (props) => {
   return (
     <div className="prijave-list">
       {props.prijave.map((prijava, index) => {
-        return <Prijava key={index} />;
+        return (
+          <Prijava
+            key={index}
+            aktivanTab={props.aktivanTab}
+            setAktivanTab={props.setAktivanTab}
+          />
+        );
       })}
     </div>
   );
