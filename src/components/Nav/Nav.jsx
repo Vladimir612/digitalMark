@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Nav.scss";
 import {
   BsClipboardCheck,
@@ -115,14 +115,13 @@ const Nav = (props) => {
           )}
           {aktivanTab === 8 && <span className="kvadrat kvadrat-2"></span>}
         </li>
-
-        <div className="profile-details">
-          <div className="profile-content">
-            <FaUserCircle size={30} color="white" />
-            {props.otvorenNav && <p className="job">Pera Perić</p>}
-          </div>
-        </div>
       </ul>
+      <div className="profile-details">
+        <div className="profile-content">
+          <FaUserCircle size={30} color="white" />
+          {props.otvorenNav && <p className="job">Pera Perić</p>}
+        </div>
+      </div>
     </div>
   );
 };

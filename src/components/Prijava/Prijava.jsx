@@ -88,13 +88,3 @@ const Prijava = (props) => {
 };
 
 export default Prijava;
-
-{
-  /* <>
-              {console.log("uslo")}
-              <CustomButton onClick={handleOcena}>Izmeni ocenu</CustomButton>
-              <CustomButton onClick={handleSmestiUfinalno}>
-                Smesti u finalno
-              </CustomButton>
-            </> */
-}
