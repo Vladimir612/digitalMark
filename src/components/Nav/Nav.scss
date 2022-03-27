@@ -1,12 +1,16 @@
 @import "../../global.scss";
 
 .sidebar {
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
-  height: 100vh;
+  height: 100%;
   width: fit-content;
+  min-width: 17rem;
   background: #11101d;
+  &.closed {
+    min-width: initial !important;
+  }
   .hamburger {
     @include box-center($justify: center);
   }
@@ -31,7 +35,7 @@
       position: relative;
       padding: 0.5rem;
       padding-right: 0.8rem;
-      margin: 0.4rem 0 0.4rem 0.5rem;
+      margin: 0.2rem 0 0.2rem 0.5rem;
       cursor: pointer;
       @include box-center($justify: flex-start);
       .link-name {
@@ -103,8 +107,10 @@
 @media screen and (max-width: 600px) {
   .sidebar {
     width: 100vw;
+    position: absolute;
     &.closed {
-      width: fit-content;
+      width: fit-content !important;
+      position: relative;
     }
   }
 }

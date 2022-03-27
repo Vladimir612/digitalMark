@@ -15,6 +15,7 @@ import { CgMenuRound } from "react-icons/cg";
 
 const Nav = (props) => {
   const { aktivanTab, setAktivanTab } = props;
+  console.log(window.innerHeight);
 
   return (
     <div className={props.otvorenNav ? "sidebar" : "sidebar closed"}>
