@@ -1,64 +1,30 @@
-import React from 'react';
+import React from "react";
+import KarticaTrenutnoStanje from "./KarticaTrenutnoStanje";
 import "./TrenutnoStanje.scss";
 
-
-const TrenutnoStanje = () => {
-  return (
-
-  
-    <body>
+const TrenutnoStanje = (props) => {
+    return (
         <div class="ts-container">
-            <div class="ts-kartica">
-                <div class="grafik">
-                    <div class="krug">
-                        <svg>
-                            <circle cx="70" cy="70" r="70"></circle>
-                            <circle cx="70" cy="70" r="70" data-count="70"></circle>
-                        </svg>
-                        <div class="procenat">
-                            <h2>70<span>%</span></h2>
-                        </div>
-                    </div>
-                    <h2 class="naziv">Panel</h2>
-                </div>  
+            <h2 className="section-naslov">Radionice</h2>
+            <div className="radionice">
+                <KarticaTrenutnoStanje broj={100} naziv="A1" />
+                <KarticaTrenutnoStanje broj={100} naziv="Raiffeisen" />
+                <KarticaTrenutnoStanje broj={100} naziv="Semos" />
+                <KarticaTrenutnoStanje broj={100} naziv="Panel" />
+                <KarticaTrenutnoStanje broj={100} naziv="Panel" />
+                <KarticaTrenutnoStanje broj={100} naziv="Panel" />
             </div>
-            <div class="ts-kartica">
-                <div class="grafik">
-                    <div class="krug">
-                        <svg>
-                            <circle cx="70" cy="70" r="70"></circle>
-                            <circle cx="70" cy="70" r="70"></circle>
-                        </svg>
-                        <div class="procenat">
-                            <h2>85<span>%</span></h2>
-                        </div>
-                    </div>
-                    <h2 class="naziv">Tech Challenge</h2>
-                </div>  
-            </div>
-            <div class="ts-kartica">
-                <div class="grafik">
-                    <div class="krug">
-                        <svg>
-                            <circle cx="70" cy="70" r="70"></circle>
-                            <circle cx="70" cy="70" r="70"></circle>
-                        </svg>
-                        <div class="procenat">
-                            <h2>60<span>%</span></h2>
-                        </div>
-                    </div>
-                    <h2 class="naziv">Speed Dating</h2>
-                </div>  
+            <h2 className="section-naslov">Tech Challenge</h2>
+            <div className="radionice">
+                <KarticaTrenutnoStanje broj={100} naziv="Panel" />
+                <KarticaTrenutnoStanje broj={100} naziv="Panel" />
+                <KarticaTrenutnoStanje broj={100} naziv="Panel" />
+                <KarticaTrenutnoStanje broj={100} naziv="Panel" />
+                <KarticaTrenutnoStanje broj={100} naziv="Panel" />
+                <KarticaTrenutnoStanje broj={100} naziv="Panel" />
             </div>
         </div>
-    </body>
+    );
+};
 
-
-
-
-
-
-  )
-}
-
-export default TrenutnoStanje
+export default TrenutnoStanje;

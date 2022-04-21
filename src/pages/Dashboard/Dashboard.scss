@@ -1,7 +1,12 @@
 @import "../../global.scss";
 
 .dashboard-page {
-  @include box-center($justify: space-between);
-  height: 100%;
-  position: relative;
+    @include box-center($justify: flex-start);
+    height: 100vh;
+    position: relative;
+    overflow-y: hidden;
+
+    .content {
+        width: 100%;
+    }
 }

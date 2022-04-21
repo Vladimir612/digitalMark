@@ -1,88 +1,102 @@
 @import "../../global.scss";
 
 .kartica-za-prijavu {
-  margin: 1rem 0.5rem;
-  width: 16rem;
-  color: rgba(255, 255, 255, 0.822);
-  .wrapper-kartica {
-    @include box-center($direction: column, $justify: center);
-    overflow: hidden;
-    height: 100%;
-    width: 100%;
-    border-radius: 15px;
-    // box-shadow: rgba(0, 0, 0, 0.86) 0px 22px 70px 4px;
-    background-color: $svetlija_pozadina1;
-    background-image: linear-gradient(
-      0,
-      $svetlija_pozadina1 0%,
-      $svetlija_pozadina2 120%
-    );
-    .top {
-      @include box-center($direction: row, $justify: space-between);
-      height: 15%;
-      width: 100%;
-      font-size: 0.9rem;
-      //background-color: $svetlija_pozadina1;
-      border-bottom: 1px solid rgba(219, 219, 219, 0.692);
+    margin: 1rem 0.5rem;
+    width: 16rem;
+    color: rgba(255, 255, 255, 0.822);
+    .wrapper-kartica {
+        @include box-center($direction: column, $justify: center);
+        overflow: hidden;
+        height: 100%;
+        width: 100%;
+        border-radius: 15px;
+        // box-shadow: rgba(0, 0, 0, 0.86) 0px 22px 70px 4px;
+        background-color: $pozadina-siva;
+        color: $pozadina-tamna;
+        font-weight: 600;
+        .top {
+            @include box-center($direction: row, $justify: space-between);
+            height: 15%;
+            width: 100%;
+            font-size: 0.9rem;
+            //background-color: $svetlija_pozadina1;
+            border-bottom: 2px solid $crvena;
+        }
     }
-  }
 }
 
 .top_left {
-  @include box-center($direction: row, $justify: space-between);
-  padding: 0.2rem 0.5rem;
-  .idPrijave {
-    margin-right: 0.2rem;
-  }
+    @include box-center($direction: row, $justify: space-between);
+    padding: 0.2rem 0.5rem;
+    .idPrijave {
+        margin-right: 0.2rem;
+    }
 }
 .indikatori {
-  @include box-center($direction: row, $justify: flex-end);
-  margin-right: 2%;
+    @include box-center($direction: row, $justify: flex-end);
+    margin-right: 2%;
 }
 .indikator1 {
-  background-color: #c6162de8;
-  width: 0.6rem;
-  height: 0.6rem;
-  border-radius: 2px;
-  margin-right: 0.2rem;
+    background-color: #c6162de8;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 2px;
+    margin-right: 0.2rem;
 }
 .indikator2 {
-  background-color: rgba(65, 125, 236, 0.932);
-  border-radius: 50%;
-  width: 0.6rem;
-  height: 0.6rem;
+    background-color: rgba(65, 125, 236, 0.932);
+    border-radius: 50%;
+    width: 0.6rem;
+    height: 0.6rem;
 }
 
 .middle {
-  @include box-center($direction: column);
-  height: 60%;
-  width: 100%;
-  padding: 0.5rem;
-  font-size: 0.75rem;
-  .zelja,
-  .info-za-logistiku {
-    margin-top: 0.5rem;
-    background: rgb(206, 205, 205);
-    color: #000;
-    border-radius: 1rem;
-    padding: 0.5rem;
     @include box-center($direction: column);
     align-items: flex-start;
-    span {
-      font-weight: 500;
+    height: 60%;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    .prijava-osnovno {
+        padding-left: 1rem;
     }
-  }
-  .info-za-logistiku {
-    background: rgb(225, 179, 255);
-  }
+
+    .zelja,
+    .info-za-logistiku {
+        align-self: center;
+        margin-top: 0.5rem;
+        background: lighten($crvena, 50);
+        color: $crvena;
+        border-radius: 1rem;
+        padding: 0.5rem;
+        @include box-center($direction: column);
+        align-items: flex-start;
+        span {
+            font-weight: 500;
+        }
+    }
+    .info-za-logistiku {
+        background: $crvena;
+        color: #fff;
+    }
+
+    .napomena {
+        align-self: center;
+        width: 85%;
+        margin-top: 0.5rem;
+        border-radius: 1rem;
+        resize: none;
+        min-height: 5rem;
+        padding: 0.4rem;
+    }
 }
 .izabrano {
-  text-align: center;
+    text-align: center;
 }
 
 .buttons {
-  @include box-center($direction: row, $justify: space-evenly);
-  width: 100%;
-  padding-bottom: 1rem;
-  padding-top: 0.7rem;
+    @include box-center($direction: row, $justify: space-evenly);
+    width: 100%;
+    padding-bottom: 1rem;
+    padding-top: 0.7rem;
 }
