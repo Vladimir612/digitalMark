@@ -5,6 +5,21 @@ $svetlija_pozadina2: hsl(233, 22%, 17%);
 
 $tekst: white;
 
+$crvena: #cc203a;
+
+$aktivni_link: #fff;
+
+$pozadina_tamna: #14191b;
+$pozadina_siva: #b4afb3;
+
+$naslov_tamna: #fff;
+$tekst_tamna: #ffffffb3;
+
+$naslov_siva: #14191b;
+$tekst_siva: #14191bb3;
+
+$pozadina_nav_oprojektu: #292929;
+
 //mixins
 @mixin box-center($direction: row, $justify: center) {
   display: flex;

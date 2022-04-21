@@ -79,6 +79,27 @@
     }
   }
   .profile-details {
+    .profile-more-details {
+      width: 15rem;
+      border-radius: 2rem;
+      background: $crvena;
+      color: #fff;
+      @include box-center($direction: column);
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.8rem 1rem;
+      position: absolute;
+      bottom: 4rem;
+      button {
+        background: #fff;
+        border-radius: 2rem;
+        padding: 0.4rem 1.9rem;
+        color: $crvena;
+        outline: none;
+        border: none;
+        box-shadow: 2px 2px 9px #000000cc;
+      }
+    }
     @include box-center($justify: flex-start);
     background: #1d1b31;
     padding: 0.8rem 1rem;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Nav.scss";
 import {
   BsClipboardCheck,
@@ -12,10 +12,17 @@ import {
 import { AiOutlineFileDone } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
 import { CgMenuRound } from "react-icons/cg";
+import { useNavigate } from "react-router-dom";
 
 const Nav = (props) => {
   const { aktivanTab, setAktivanTab } = props;
-  console.log(window.innerHeight);
+  const [visibleUserInfo, setVisibleUserInfo] = useState(false);
+  let navigate = useNavigate();
+
+  const handleOdjava = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
   return (
     <div className={props.otvorenNav ? "sidebar" : "sidebar closed"}>
@@ -118,10 +125,23 @@ const Nav = (props) => {
         </li>
       </ul>
       <div className="profile-details">
-        <div className="profile-content">
+        <div
+          className="profile-content"
+          onClick={() => setVisibleUserInfo(!visibleUserInfo)}
+          style={{ cursor: "pointer" }}
+        >
           <FaUserCircle size={30} color="white" />
           {props.otvorenNav && <p className="job">Pera Perić</p>}
         </div>
+        {visibleUserInfo && (
+          <div className="profile-more-details">
+            <h2 className="ime-prezime">Pera Peric</h2>
+            <p>Uloga: Koordinator HR-tima</p>
+            <button className="dugme izloguj-se" onClick={handleOdjava}>
+              Izloguj se
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
