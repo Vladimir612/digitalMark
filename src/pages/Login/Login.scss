@@ -2,6 +2,8 @@
 
 .login-page {
   height: 100vh;
+  overflow: hidden;
+  width: 100vw;
   @include box-center($direction: column, $justify: space-around);
   background-color: $pozadina;
   position: relative;
@@ -20,12 +22,11 @@
   @include box-center($direction: column, $justify: space-around);
   height: 10rem;
   width: 70%;
-
   input {
     background-color: $pozadina;
     outline: none;
-    border: 1px solid white;
-    border-radius: 10px;
+    border: none;
+    border-bottom: 1px solid #fff;
     color: $tekst;
     font-size: 1rem;
     padding: 0.5rem;

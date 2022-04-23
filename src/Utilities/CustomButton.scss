@@ -1,13 +1,17 @@
 @import "../global.scss";
 
 .button {
-    font-size: 0.8rem;
-    font-weight: bold;
-    padding: 0.3rem 0.8rem 0.4rem 0.8rem;
-    border: none;
-    border-radius: 1rem;
-    box-shadow: 2px 2px 5px 0px #474747a7;
-    cursor: pointer;
-    color: #e7ecf5;
-    background-color: $crvena;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 0.3rem 0.8rem 0.4rem 0.8rem;
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 2px 2px 5px 0px #474747a7;
+  cursor: pointer;
+  color: #e7ecf5;
+  background-color: $crvena;
+  &.disabled {
+    cursor: initial;
+    background: $pozadina-siva;
+  }
 }

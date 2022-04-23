@@ -7,7 +7,7 @@
   height: 100%;
   width: fit-content;
   min-width: 17rem;
-  background: #11101d;
+  background: #0f0f0f;
   &.closed {
     min-width: initial !important;
   }
@@ -43,13 +43,13 @@
         padding-left: 0.5rem;
       }
       &.aktivan {
-        background: #514b8b;
+        background: $crvena;
         border-top-left-radius: 1rem;
         border-bottom-left-radius: 1rem;
         .kvadrat {
           width: 1rem;
           height: 1rem;
-          background: #514b8b;
+          background: $crvena;
           position: absolute;
           right: 0;
         }
@@ -59,7 +59,7 @@
           position: absolute;
           top: 0;
           left: 0;
-          background: #11101d;
+          background: #0f0f0f;
           width: 1rem;
           height: 1rem;
         }
@@ -101,7 +101,7 @@
       }
     }
     @include box-center($justify: flex-start);
-    background: #1d1b31;
+    background: $bela;
     padding: 0.8rem 1rem;
     width: 100%;
     position: absolute;
@@ -112,12 +112,12 @@
       align-items: center;
     }
     .profile-name {
-      color: #fff;
+      color: $crvena;
       font-size: 1.3rem;
       font-weight: 500;
     }
     .job {
-      color: #fff;
+      color: $crvena;
       font-size: 1.3rem;
       font-weight: 500;
       padding-left: 0.5rem;

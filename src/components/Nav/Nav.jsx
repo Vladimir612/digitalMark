@@ -130,7 +130,7 @@ const Nav = (props) => {
           onClick={() => setVisibleUserInfo(!visibleUserInfo)}
           style={{ cursor: "pointer" }}
         >
-          <FaUserCircle size={30} color="white" />
+          <FaUserCircle size={30} color="#cc203a" />
           {props.otvorenNav && <p className="job">Pera Perić</p>}
         </div>
         {visibleUserInfo && (

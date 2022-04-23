@@ -6,14 +6,19 @@ const CustomButton = (props) => {
   return (
     <motion.button
       type="submit"
-      whileHover={{
-        scale: 1.05,
-      }}
-      whileTap={{
-        scale: 0.95,
-      }}
-      className={"button " + props.className}
+      whileHover={
+        !props.disabled && {
+          scale: 1.05,
+        }
+      }
+      whileTap={
+        !props.disabled && {
+          scale: 0.95,
+        }
+      }
+      className={!props.disabled ? "button" : "button disabled"}
       onClick={props.onClick}
+      disabled={props.disabled}
     >
       {props.children}
     </motion.button>
