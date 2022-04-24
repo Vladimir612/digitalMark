@@ -8,6 +8,7 @@
   width: fit-content;
   min-width: 17rem;
   background: #0f0f0f;
+  z-index: 5000;
   &.closed {
     min-width: initial !important;
   }
@@ -121,6 +122,7 @@
       font-size: 1.3rem;
       font-weight: 500;
       padding-left: 0.5rem;
+      text-transform: capitalize;
     }
   }
 }

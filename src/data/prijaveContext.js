@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 const PrijaveContext = React.createContext();
 
@@ -15,7 +15,19 @@ export const PrijaveProvider = ({ children }) => {
         "http://digitalmark6.herokuapp.com/api/prijave",
         { headers: { userId: localStorage.getItem("token") } }
       );
-      console.log(res);
+
+      const compare = (a, b) => {
+        if (a.imePrezime < b.imePrezime) {
+          return -1;
+        }
+        if (a.imePrezime > b.imePrezime) {
+          return 1;
+        }
+        return 0;
+      };
+
+      res.data.data.sort(compare);
+
       setPrijave(res.data.data);
       return { msg: "success", res };
     } catch (err) {
@@ -23,137 +35,154 @@ export const PrijaveProvider = ({ children }) => {
     }
   };
 
-  const vratiUOcenjene = async (adminEmail, prijava) => {
+  const vratiUOcenjene = async (prijava) => {
     try {
-      const azuriranaPrijava = await axios.patch(
-        `http://localhost:5000/prijave/vratiUOcenjene?adminEmail=${adminEmail}`,
+      await axios.patch(
+        "http://digitalmark6.herokuapp.com/api/prijave/hr/uocenjeno",
         {
-          prijavaId: prijava._id,
-        }
+          prijava_id: prijava._id,
+        },
+        { headers: { userId: localStorage.getItem("token") } }
       );
-      let newPrijave = prijave.filter((pr) => pr._id !== prijava._id);
-      newPrijave.push(azuriranaPrijava.data.res);
 
-      setPrijave(newPrijave);
+      await fetchPrijave();
     } catch (err) {
       console.log(err.msg);
     }
   };
 
-  const smestiUFinalno = async (adminEmail, prijava) => {
+  const smestiUFinalno = async (prijava) => {
     try {
-      const azuriranaPrijava = await axios.patch(
-        `http://localhost:5000/prijave/smestiUFinalno?adminEmail=${adminEmail}`,
+      await axios.patch(
+        "http://digitalmark6.herokuapp.com/api/prijave/hr/ufinalno",
         {
-          prijavaId: prijava._id,
-        }
+          prijava_id: prijava._id,
+        },
+        { headers: { userId: localStorage.getItem("token") } }
       );
-      let newPrijave = prijave.filter((pr) => pr._id !== prijava._id);
-      newPrijave.push(azuriranaPrijava.data.res);
 
-      setPrijave(newPrijave);
+      await fetchPrijave();
     } catch (err) {
       console.log(err.msg);
     }
   };
 
-  const oznaci = async (adminEmail, prijava) => {
+  const oznaci = async (prijava) => {
     try {
-      const azuriranaPrijava = await axios.patch(
-        `http://localhost:5000/prijave/oznaci?adminEmail=${adminEmail}`,
+      await axios.patch(
+        "http://digitalmark6.herokuapp.com/api/prijave/oznaci",
+        { prijava_id: prijava._id },
         {
-          prijavaId: prijava._id,
+          headers: { userId: localStorage.getItem("token") },
         }
       );
-      let newPrijave = prijave.filter((pr) => pr._id !== prijava._id);
-      newPrijave.push(azuriranaPrijava.data.res);
 
-      setPrijave(newPrijave);
+      await fetchPrijave();
     } catch (err) {
       console.log(err.msg);
     }
   };
 
-  const staviUSmestene = async (adminEmail, prijava) => {
+  const staviUSmestene = async (prijava) => {
     try {
-      const azuriranaPrijava = await axios.patch(
-        `http://localhost:5000/prijave/staviUSmestene?adminEmail=${adminEmail}`,
+      await axios.patch(
+        "http://digitalmark6.herokuapp.com/api/prijave/log/usmestene",
         {
-          prijavaId: prijava._id,
+          prijava_id: prijava._id,
+        },
+        {
+          headers: { userId: localStorage.getItem("token") },
         }
       );
-      let newPrijave = prijave.filter((pr) => pr._id !== prijava._id);
-      newPrijave.push(azuriranaPrijava.data.res);
 
-      setPrijave(newPrijave);
+      await fetchPrijave();
     } catch (err) {
       console.log(err.msg);
     }
   };
 
-  const vratiIzSmestenih = async (adminEmail, prijava) => {
+  const vratiIzSmestenih = async (prijava) => {
     try {
-      const azuriranaPrijava = await axios.patch(
-        `http://localhost:5000/prijave/vratiIzSmestenih?adminEmail=${adminEmail}`,
+      await axios.patch(
+        "http://digitalmark6.herokuapp.com/api/prijave/log/unesmestene",
         {
-          prijavaId: prijava._id,
+          prijava_id: prijava._id,
+        },
+        {
+          headers: { userId: localStorage.getItem("token") },
         }
       );
-      let newPrijave = prijave.filter((pr) => pr._id !== prijava._id);
-      newPrijave.push(azuriranaPrijava.data.res);
 
-      setPrijave(newPrijave);
+      await fetchPrijave();
     } catch (err) {
       console.log(err.msg);
     }
   };
 
-  const oceni = async (adminEmail, prijava, skala1, skala2, skala3) => {
+  const oceni = async (prijava, ocena) => {
     try {
-      const azuriranaPrijava = await axios.patch(
-        `http://localhost:5000/prijave/oceni?adminEmail=${adminEmail}`,
+      await axios.patch(
+        "https://digitalmark6.herokuapp.com/api/prijave/oceni",
         {
           prijavaId: prijava._id,
-          skala1: skala1,
-          skala2: skala2,
-          skala3: skala3,
+          ocenaPanel: ocena,
+        },
+        {
+          headers: { userId: localStorage.getItem("token") },
         }
       );
-      let newPrijave = prijave.filter((pr) => pr._id !== prijava._id);
-      newPrijave.push(azuriranaPrijava.data.res);
 
-      setPrijave(newPrijave);
+      await fetchPrijave();
     } catch (err) {
       console.log(err.msg);
     }
   };
 
-  const infoZaLog = async (adminEmail, prijava, radionica, panel) => {
+  const infoZaLog = async (prijava, panel, tech, speed, radionica) => {
     try {
-      const azuriranaPrijava = await axios.patch(
-        `http://localhost:5000/prijave/infoZaLogistiku?adminEmail=${adminEmail}`,
+      await axios.patch(
+        "https://digitalmark6.herokuapp.com/api/prijave/infozalog",
         {
-          prijavaId: prijava._id,
+          prijava_id: prijava._id,
           radionica: radionica,
           panel: panel,
+          techChallenge: tech,
+          speedDating: speed,
+        },
+        {
+          headers: { userId: localStorage.getItem("token") },
         }
       );
-      let newPrijave = prijave.filter((pr) => pr._id !== prijava._id);
-      newPrijave.push(azuriranaPrijava.data.res);
 
-      setPrijave(newPrijave);
+      await fetchPrijave();
     } catch (err) {
       console.log(err.msg);
     }
   };
 
-  useEffect(() => {
-    fetchPrijave();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const ostaviNapomenu = async (prijava, napomena) => {
+    try {
+      await axios.patch(
+        "https://digitalmark6.herokuapp.com/api/prijave/napomena",
+        {
+          prijava_id: prijava._id,
+          napomena: napomena,
+        },
+        {
+          headers: { userId: localStorage.getItem("token") },
+        }
+      );
+
+      await fetchPrijave();
+    } catch (err) {
+      console.log(err.msg);
+    }
+  };
 
   return (
     <PrijaveContext.Provider
       value={{
+        fetchPrijave,
         prijave,
         vratiUOcenjene,
         smestiUFinalno,
@@ -162,6 +191,7 @@ export const PrijaveProvider = ({ children }) => {
         vratiIzSmestenih,
         oceni,
         infoZaLog,
+        ostaviNapomenu,
       }}
     >
       {children}

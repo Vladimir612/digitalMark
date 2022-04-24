@@ -11,6 +11,7 @@ const PrijaveList = (props) => {
             key={index}
             aktivanTab={props.aktivanTab}
             setAktivanTab={props.setAktivanTab}
+            data={prijava}
           />
         );
       })}

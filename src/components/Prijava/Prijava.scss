@@ -1,7 +1,7 @@
 @import "../../global.scss";
 
 .modal-detaljnije {
-  z-index: 10;
+  z-index: 10000;
   position: absolute;
   height: 100vh;
   width: 100vw;
@@ -184,9 +184,10 @@
 
 .kartica-za-prijavu {
   margin: 1.5rem 1rem;
-  width: 20rem;
+  width: 22rem;
+  height: 20rem;
   color: rgba(255, 255, 255, 0.822);
-  @include box-center($direction: column, $justify: center);
+  @include box-center($direction: column, $justify: space-between);
   overflow: hidden;
   border-radius: 1.5rem;
   background: $bela;
@@ -194,7 +195,6 @@
   font-weight: 600;
   .top {
     @include box-center($direction: row, $justify: space-between);
-    height: 15%;
     width: 100%;
     font-size: 1.2rem;
     padding: 0 1rem;
@@ -202,21 +202,11 @@
   }
 }
 
-.indikatori {
-  @include box-center($direction: row, $justify: flex-end);
-}
-.indikator1 {
-  background-color: #c6162de8;
-  width: 0.8rem;
-  height: 0.8rem;
-  border-radius: 2px;
-  margin-right: 0.2rem;
-}
-.indikator2 {
-  background-color: rgba(65, 125, 236, 0.932);
-  border-radius: 50%;
-  width: 0.8rem;
-  height: 0.8rem;
+.flagged {
+  margin-right: 0.3rem;
+  margin-left: 0.3rem;
+  cursor: pointer;
+  @include box-center;
 }
 
 .middle {
@@ -230,7 +220,7 @@
     h4 {
       font-size: 1.3rem;
     }
-    p,
+
     a {
       word-break: break-all;
     }
@@ -246,4 +236,24 @@
   width: 100%;
   padding-bottom: 1rem;
   padding-top: 0.7rem;
+}
+
+@media screen and (max-width: 800px) {
+  .modal-detaljnije {
+    .zelja {
+      margin-right: 0;
+    }
+    .modal-content {
+      .ostalo {
+        flex-direction: column;
+      }
+    }
+    .info-za-logistiku {
+      .tech-challenge,
+      .speed-dating,
+      .radionice {
+        max-width: 100%;
+      }
+    }
+  }
 }

@@ -2,24 +2,50 @@ import React, { useState } from "react";
 import "./Prijava.scss";
 import CustomButton from "./../../Utilities/CustomButton";
 import { IoIosClose } from "react-icons/io";
+import { BsFlagFill, BsFlag } from "react-icons/bs";
+import { usePrijave } from "../../data/prijaveContext";
+import { useAdminInfo } from "../../data/adminInfoContext";
 
 const Prijava = (props) => {
-  const handleOcena = () => {
-    console.log("oceni");
-  };
-  // const handleSmestiUfinalno = () => {
-  //   console.log("smesti u finalno");
-  // };
+  const {
+    oznaci,
+    oceni,
+    vratiUOcenjene,
+    smestiUFinalno,
+    infoZaLog,
+    ostaviNapomenu,
+    staviUSmestene,
+    vratiIzSmestenih,
+  } = usePrijave();
+
+  const { adminInfo } = useAdminInfo();
 
   const [vidljivoDetaljnije, setVidljivoDetaljnije] = useState(false);
-  const [ocenaPanel, setOcenaPanel] = useState(0);
+  const [ocenaPanel, setOcenaPanel] = useState(props.data.zelja.panel.ocena);
   const errorPoruka = "Morate uneti vrednost izmedju 0 i 25";
 
   //info-za-logistiku
-  const [ucestvujeNaPanelu, setUcestvujeNaPanelu] = useState(false);
-  const [tech, setTech] = useState("");
-  const [speed, setSpeed] = useState("");
-  const [radionice, setRadionice] = useState("");
+  const [ucestvujeNaPanelu, setUcestvujeNaPanelu] = useState(
+    props.data.infoZaLogistiku.panel
+  );
+  const [tech, setTech] = useState(props.data.infoZaLogistiku.techChallenge);
+  const [speed, setSpeed] = useState(props.data.infoZaLogistiku.speedDating);
+  const [radionice, setRadionice] = useState(
+    props.data.infoZaLogistiku.radionica
+  );
+  const [napomena, setNapomena] = useState(props.data.napomena);
+
+  const [oznacen, setOznacen] = useState(props.data.oznacen);
+
+  const handleOcena = () => {
+    oceni(props.data, ocenaPanel);
+    setVidljivoDetaljnije(false);
+  };
+
+  const jelMozeUFinalno =
+    !props.data.infoZaLogistiku.radionica &&
+    !props.data.infoZaLogistiku.techChallenge &&
+    !props.data.infoZaLogistiku.speedDating;
 
   return (
     <>
@@ -36,68 +62,88 @@ const Prijava = (props) => {
 
             <h1>Želja</h1>
             <div className="zelja">
-              <div className="panel">
-                <h2>Panel</h2>
-                <p>Šta želite da čujete na panelu?</p>
-                <p>
-                  {
-                    "fdhjbvj svhbdfkjvbk vshbdfjvhbjh sjhjvbdjhfv fhjvbdjhfvb jfhvbjdhfbv"
-                  }
-                </p>
-              </div>
-              <div className="tech-challenge">
-                <h2>Tech challenge</h2>
-                <h4>Prethodno iskustvo: </h4>
-                <p>
-                  {
-                    "fdhjbvj svhbdfkjvbk vshbdfjvhbjh sjhjvbdjhfv fhjvbdjhfvb jfhvbjdhfbv, fdhjbvj svhbdfkjvbk vshbdfjvhbjh sjhjvbdjhfv fhjvbdjhfvb jfhvbjdhfbv, fdhjbvj svhbdfkjvbk vshbdfjvhbjh sjhjvbdjhfv fhjvbdjhfvb jfhvbjdhfbv"
-                  }
-                </p>
-                <h4>Tehnologije: </h4>
-                <p>{"Java, React, NodeJS"}</p>
-                <h4>Sa kim bi želeo da učestvuješ: </h4>
-                <p>{"Milan Milanović, Jovan Jovanović, Nemanja Rutović"}</p>
-                <h4>Za koje kompanije se prijavljuješ: </h4>
-                <p>{"Raiffeisen, A1, EyeSee, Prime software"}</p>
-              </div>
-              <div className="speed-dating">
-                <h2>Speed dating</h2>
-                <h4>Za koje kompanije se prijavljuješ: </h4>
-                <p>{"Raiffeisen, A1, EyeSee, Prime software"}</p>
-              </div>
-              <div className="radionice">
-                <h2>Radionice: </h2>
-                <ul>
-                  <li>Uvod u Angular</li>
-                  <li>3D game development</li>
-                </ul>
-                <p className="motivaciono">
-                  {
-                    "fdhjbvj svhbdfkjvbk vshbdfjvhbjh sjhjvbdjhfv fhjvbdjhfvb jfhvbjdhfbv, fdhjbvj svhbdfkjvbk vshbdfjvhbjh sjhjvbdjhfv fhjvbdjhfvb jfhvbjdhfbv, fdhjbvj svhbdfkjvbk vshbdfjvhbjh sjhjvbdjhfv fhjvbdjhfvb jfhvbjdhfbv, fdhjbvj svhbdfkjvbk vshbdfjvhbjh sjhjvbdjhfv fhjvbdjhfvb jfhvbjdhfbv, fdhjbvj svhbdfkjvbk vshbdfjvhbjh sjhjvbdjhfv fhjvbdjhfvb jfhvbjdhfbv"
-                  }
-                </p>
-              </div>
+              {props.data.zelja.panel.staBiCuli !== "" && (
+                <div className="panel">
+                  <h2>Panel</h2>
+                  <p>Šta želite da čujete na panelu?</p>
+                  <p>{props.data.zelja.panel.staBiCuli}</p>
+                </div>
+              )}
+              {props.data.zelja.techChallenge.prethodnoIskustvo !== "" && (
+                <div className="tech-challenge">
+                  <h2>Tech challenge</h2>
+                  <h4>
+                    Da li si do sad učestvovao/la u rešavanju IT studije slučaja
+                    i ako jesi kakvi su ti utisci?
+                  </h4>
+                  <p>{props.data.zelja.techChallenge.prethodnoIskustvo}</p>
+                  <h4>Tehnologije: </h4>
+                  <p>{props.data.zelja.techChallenge.tehnologije}</p>
+                  <h4>Sa kim bi želeo da učestvuješ: </h4>
+                  <p>{props.data.zelja.techChallenge.saKim}</p>
+                  <h4>Za koje kompanije se prijavljuješ: </h4>
+                  <ul>
+                    {props.data.zelja.techChallenge.kompanije.map(
+                      (komp, index) => (
+                        <li key={index}>{komp}</li>
+                      )
+                    )}
+                  </ul>
+                </div>
+              )}
+              {props.data.zelja.speedDating.length > 0 && (
+                <div className="speed-dating">
+                  <h2>Speed dating</h2>
+                  <h4>Za koje kompanije se prijavljuješ: </h4>
+                  <ul>
+                    {props.data.zelja.speedDating.map((komp, index) => (
+                      <li key={index}>{komp}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {props.data.zelja.radionice.motivaciono !== "" && (
+                <div className="radionice">
+                  <h2>Radionice</h2>
+                  <ul>
+                    {props.data.zelja.radionice.sveRadionice.map(
+                      (komp, index) => (
+                        <li key={index}>{komp}</li>
+                      )
+                    )}
+                  </ul>
+                  <h4>Šta te motiviše da se u daljoj karijeri baviš IT-jem?</h4>
+                  <p className="motivaciono">
+                    {props.data.zelja.radionice.motivaciono}
+                  </p>
+                </div>
+              )}
             </div>
             <div className="ostalo">
               <div className="hr-posao">
-                <div className="oceni">
-                  <p>Oceni panel: </p>
-                  <div>
-                    <input
-                      type="text"
-                      className="ocena-input"
-                      value={ocenaPanel}
-                      onChange={(e) => setOcenaPanel(e.target.value)}
-                    />
-                    <CustomButton
-                      onClick={handleOcena}
-                      disabled={ocenaPanel <= 0 || ocenaPanel > 25}
-                    >
-                      Oceni
-                    </CustomButton>
-                    <p>{errorPoruka}</p>
-                  </div>
-                </div>
+                {(props.data.statusHR === "ocenjen" ||
+                  props.data.statusHR === "neocenjen") &&
+                  adminInfo.dozvola === 2 && (
+                    <div className="oceni">
+                      <p>Oceni panel: </p>
+                      <div>
+                        <input
+                          type="text"
+                          className="ocena-input"
+                          value={ocenaPanel}
+                          onChange={(e) => setOcenaPanel(e.target.value)}
+                        />
+                        <CustomButton
+                          onClick={handleOcena}
+                          disabled={ocenaPanel <= 0 || ocenaPanel > 25}
+                        >
+                          Oceni
+                        </CustomButton>
+                        <p>{errorPoruka}</p>
+                      </div>
+                    </div>
+                  )}
+
                 <div className="info-za-logistiku">
                   <h3>Info za logistiku</h3>
                   <div className="panel">
@@ -137,34 +183,55 @@ const Prijava = (props) => {
                       onChange={(e) => setRadionice(e.target.value)}
                     />
                   </div>
-                  <CustomButton
-                    onClick={handleOcena}
-                    disabled={tech === "" || speed === "" || radionice === ""}
-                  >
-                    Pošalji info za logistiku
-                  </CustomButton>
+                  {adminInfo.dozvola === 2 &&
+                    props.data.statusHR === "ocenjen" && (
+                      <CustomButton
+                        onClick={() =>
+                          infoZaLog(
+                            props.data,
+                            ucestvujeNaPanelu,
+                            tech,
+                            speed,
+                            radionice
+                          )
+                        }
+                        disabled={
+                          tech === "" || speed === "" || radionice === ""
+                        }
+                      >
+                        Pošalji info za logistiku
+                      </CustomButton>
+                    )}
                 </div>
               </div>
               <div className="detaljnije-osnovne-info">
                 <h2>Dodatne informacije</h2>
                 <div className="broj-tel">
                   <h4>Broj telefona: </h4>
-                  <p>0643104590</p>
+                  <p>{props.data.brojTelefona}</p>
                 </div>
                 <div className="godina-studija">
                   <h4>Godina studija: </h4>
-                  <p>Prva</p>
+                  <p>{props.data.godinaStudija}</p>
                 </div>
                 <div className="newsletter">
                   <h4>Newsletter: </h4>
-                  <p>Želi da prima informacije od Fonisa</p>
+                  <p>
+                    {props.data.newsletter
+                      ? "Želi da prima informacije od Fonisa"
+                      : " Ne želi da prima informacije od Fonisa"}
+                  </p>
                 </div>
               </div>
               <div className="napomena-container">
-                <textarea className="napomena" placeholder="Napomena..." />
+                <textarea
+                  className="napomena"
+                  placeholder="Napomena..."
+                  value={napomena}
+                  onChange={(e) => setNapomena(e.target.value)}
+                />
                 <CustomButton
-                  onClick={handleOcena}
-                  // disabled={ocenaPanel <= 0 || ocenaPanel > 25}
+                  onClick={() => ostaviNapomenu(props.data, napomena)}
                 >
                   Okači napomenu
                 </CustomButton>
@@ -175,25 +242,42 @@ const Prijava = (props) => {
       )}
       <div className="kartica-za-prijavu">
         <div className="top">
-          <div className="imePrezime">Marko Markovic</div>
-          <div className="indikatori">
-            <div className="indikator1"></div>
-            <div className="indikator2"></div>
+          <div className="imePrezime">{props.data.imePrezime}</div>
+
+          <div
+            className="flagged"
+            onClick={() => {
+              oznaci(props.data);
+              setOznacen(!oznacen);
+            }}
+          >
+            {oznacen ? (
+              <BsFlagFill color="#cc203a" size={20} />
+            ) : (
+              <BsFlag color="#cc203a" size={20} />
+            )}
           </div>
         </div>
 
         <div className="middle">
           <div className="prijava-osnovno">
             <h4>Privatan mejl:</h4>
-            <p className="priv_mejl">marko.markovic@gmail.com</p>
-            <h4>Fonov mejl:</h4>
-            <p className="fon_mejl">mm20200203@student.fon.bg.ac.rs</p>
+            <p className="priv_mejl">{props.data.emailPriv}</p>
+            {props.data.zelja.techChallenge.emailFon !== "" && (
+              <>
+                <h4>Fonov mejl:</h4>
+                <p className="fon_mejl">
+                  {props.data.zelja.techChallenge.emailFon}
+                </p>
+              </>
+            )}
+
             <h4>Link do CV-a</h4>
-            <a href="http" target="_blank" rel="noreferrer">
-              linklinklinklinklinklinklinklinklinklinklinklinklinklinklink
+            <a href={props.data.linkCv} target="_blank" rel="noreferrer">
+              {props.data.linkCv}
             </a>
             <p>
-              Fakultet: <span>FON</span>
+              Fakultet: <span>{props.data.fakultet}</span>
             </p>
           </div>
         </div>
@@ -203,6 +287,31 @@ const Prijava = (props) => {
               <CustomButton onClick={() => setVidljivoDetaljnije(true)}>
                 Prikaži detaljnije
               </CustomButton>
+              {props.data.statusHR === "finalno" && adminInfo.dozvola === 2 && (
+                <CustomButton onClick={() => vratiUOcenjene(props.data)}>
+                  Vrati u ocenjene
+                </CustomButton>
+              )}
+              {props.data.statusHR === "ocenjen" && adminInfo.dozvola === 2 && (
+                <CustomButton
+                  disabled={jelMozeUFinalno}
+                  onClick={() => smestiUFinalno(props.data)}
+                >
+                  Smesti u finalno
+                </CustomButton>
+              )}
+              {props.data.statusLogistika === "smesten" &&
+                adminInfo.dozvola === 3 && (
+                  <CustomButton onClick={() => vratiIzSmestenih(props.data)}>
+                    Vrati iz smestenih
+                  </CustomButton>
+                )}
+              {props.data.statusLogistika === "nesmesten" &&
+                adminInfo.dozvola === 3 && (
+                  <CustomButton onClick={() => staviUSmestene(props.data)}>
+                    Stavi u smestene
+                  </CustomButton>
+                )}
             </>
           }
         </div>

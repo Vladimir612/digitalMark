@@ -3,7 +3,6 @@ import "./Nav.scss";
 import {
   BsClipboardCheck,
   BsClipboardX,
-  BsClipboardPlus,
   BsPeopleFill,
   BsStarFill,
   BsPeople,
@@ -13,16 +12,35 @@ import { AiOutlineFileDone } from "react-icons/ai";
 import { FaUserCircle } from "react-icons/fa";
 import { CgMenuRound } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
+import { useAdminInfo } from "./../../data/adminInfoContext";
+import { motion } from "framer-motion";
 
 const Nav = (props) => {
   const { aktivanTab, setAktivanTab } = props;
   const [visibleUserInfo, setVisibleUserInfo] = useState(false);
   let navigate = useNavigate();
 
+  const { adminInfo, setAdminInfo } = useAdminInfo();
+
   const handleOdjava = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("email");
+    localStorage.removeItem("pass");
+    setAdminInfo({});
     navigate("/login");
   };
+
+  const isEmpty = Object.keys(adminInfo).length === 0;
+
+  let username = "";
+  let forname = "";
+  let lastname = "";
+  if (!isEmpty) {
+    username = adminInfo.email.split("@")[0];
+    forname = username.split(".")[0];
+    lastname = username.split(".")[1];
+    username = forname + " " + lastname;
+  }
 
   return (
     <div className={props.otvorenNav ? "sidebar" : "sidebar closed"}>
@@ -38,29 +56,33 @@ const Nav = (props) => {
       </div>
 
       <ul className="nav-links">
-        <li
-          className={aktivanTab === 1 ? "aktivan" : ""}
-          onClick={() => setAktivanTab(1)}
-        >
-          {aktivanTab === 1 && <span className="kvadrat kvadrat-1"></span>}
-          <BsClipboardX size={30} color="white" />
-          {props.otvorenNav && (
-            <span className="link-name">Neocenjene prijave</span>
-          )}
-          {aktivanTab === 1 && <span className="kvadrat kvadrat-2"></span>}
-        </li>
+        {(adminInfo.dozvola === 2 || adminInfo.dozvola === 1) && (
+          <li
+            className={aktivanTab === 1 ? "aktivan" : ""}
+            onClick={() => setAktivanTab(1)}
+          >
+            {aktivanTab === 1 && <span className="kvadrat kvadrat-1"></span>}
+            <BsClipboardX size={30} color="white" />
+            {props.otvorenNav && (
+              <span className="link-name">Neocenjene prijave</span>
+            )}
+            {aktivanTab === 1 && <span className="kvadrat kvadrat-2"></span>}
+          </li>
+        )}
 
-        <li
-          className={aktivanTab === 2 ? "aktivan" : ""}
-          onClick={() => setAktivanTab(2)}
-        >
-          {aktivanTab === 2 && <span className="kvadrat kvadrat-1"></span>}
-          <BsClipboardCheck size={30} color="white" />
-          {props.otvorenNav && (
-            <span className="link-name">Ocenjene prijave</span>
-          )}
-          {aktivanTab === 2 && <span className="kvadrat kvadrat-2"></span>}
-        </li>
+        {(adminInfo.dozvola === 2 || adminInfo.dozvola === 1) && (
+          <li
+            className={aktivanTab === 2 ? "aktivan" : ""}
+            onClick={() => setAktivanTab(2)}
+          >
+            {aktivanTab === 2 && <span className="kvadrat kvadrat-1"></span>}
+            <BsClipboardCheck size={30} color="white" />
+            {props.otvorenNav && (
+              <span className="link-name">Ocenjene prijave</span>
+            )}
+            {aktivanTab === 2 && <span className="kvadrat kvadrat-2"></span>}
+          </li>
+        )}
 
         <li
           className={aktivanTab === 3 ? "aktivan" : ""}
@@ -82,35 +104,31 @@ const Nav = (props) => {
           {aktivanTab === 4 && <span className="kvadrat kvadrat-2"></span>}
         </li>
 
-        <li
-          className={aktivanTab === 5 ? "aktivan" : ""}
-          onClick={() => setAktivanTab(5)}
-        >
-          {aktivanTab === 5 && <span className="kvadrat kvadrat-1"></span>}
-          <BsClipboardPlus size={30} color="white" />
-          {props.otvorenNav && <span className="link-name">Moje izmene</span>}
-          {aktivanTab === 5 && <span className="kvadrat kvadrat-2"></span>}
-        </li>
+        {(adminInfo.dozvola === 3 || adminInfo.dozvola === 1) && (
+          <li
+            className={aktivanTab === 5 ? "aktivan" : ""}
+            onClick={() => setAktivanTab(5)}
+          >
+            {aktivanTab === 5 && <span className="kvadrat kvadrat-1"></span>}
+            <BsPeople size={30} color="white" />
+            {props.otvorenNav && (
+              <span className="link-name">Nisu smešteni</span>
+            )}
+            {aktivanTab === 5 && <span className="kvadrat kvadrat-2"></span>}
+          </li>
+        )}
 
-        <li
-          className={aktivanTab === 6 ? "aktivan" : ""}
-          onClick={() => setAktivanTab(6)}
-        >
-          {aktivanTab === 6 && <span className="kvadrat kvadrat-1"></span>}
-          <BsPeople size={30} color="white" />
-          {props.otvorenNav && <span className="link-name">Nisu smešteni</span>}
-          {aktivanTab === 6 && <span className="kvadrat kvadrat-2"></span>}
-        </li>
-
-        <li
-          className={aktivanTab === 7 ? "aktivan" : ""}
-          onClick={() => setAktivanTab(7)}
-        >
-          {aktivanTab === 7 && <span className="kvadrat kvadrat-1"></span>}
-          <BsPeopleFill size={30} color="white" />
-          {props.otvorenNav && <span className="link-name">Smešteni</span>}
-          {aktivanTab === 7 && <span className="kvadrat kvadrat-2"></span>}
-        </li>
+        {(adminInfo.dozvola === 3 || adminInfo.dozvola === 1) && (
+          <li
+            className={aktivanTab === 6 ? "aktivan" : ""}
+            onClick={() => setAktivanTab(6)}
+          >
+            {aktivanTab === 6 && <span className="kvadrat kvadrat-1"></span>}
+            <BsPeopleFill size={30} color="white" />
+            {props.otvorenNav && <span className="link-name">Smešteni</span>}
+            {aktivanTab === 6 && <span className="kvadrat kvadrat-2"></span>}
+          </li>
+        )}
 
         <li
           className={aktivanTab === 8 ? "aktivan" : ""}
@@ -131,15 +149,22 @@ const Nav = (props) => {
           style={{ cursor: "pointer" }}
         >
           <FaUserCircle size={30} color="#cc203a" />
-          {props.otvorenNav && <p className="job">Pera Perić</p>}
+          {props.otvorenNav && <p className="job">{username}</p>}
         </div>
         {visibleUserInfo && (
           <div className="profile-more-details">
-            <h2 className="ime-prezime">Pera Peric</h2>
-            <p>Uloga: Koordinator HR-tima</p>
-            <button className="dugme izloguj-se" onClick={handleOdjava}>
+            <p>Uloga: {adminInfo.uloga}</p>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{
+                scale: 0.95,
+              }}
+              className="dugme izloguj-se"
+              onClick={handleOdjava}
+              style={{ cursor: "pointer" }}
+            >
               Izloguj se
-            </button>
+            </motion.button>
           </div>
         )}
       </div>
