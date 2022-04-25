@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/digitalMark/static/css/main.97e0a7fa.css",
-    "main.js": "/digitalMark/static/js/main.0479c5fc.js",
+    "main.js": "/digitalMark/static/js/main.0277c50a.js",
     "index.html": "/digitalMark/index.html",
     "main.97e0a7fa.css.map": "/digitalMark/static/css/main.97e0a7fa.css.map",
-    "main.0479c5fc.js.map": "/digitalMark/static/js/main.0479c5fc.js.map"
+    "main.0277c50a.js.map": "/digitalMark/static/js/main.0277c50a.js.map"
   },
   "entrypoints": [
     "static/css/main.97e0a7fa.css",
-    "static/js/main.0479c5fc.js"
+    "static/js/main.0277c50a.js"
   ]
 }
