@@ -12,7 +12,7 @@ export const PrijaveProvider = ({ children }) => {
   const fetchPrijave = async () => {
     try {
       const res = await axios.get(
-        "http://digitalmark6.herokuapp.com/api/prijave",
+        "https://digitalmark6.herokuapp.com/api/prijave",
         { headers: { userId: localStorage.getItem("token") } }
       );
 
@@ -38,7 +38,7 @@ export const PrijaveProvider = ({ children }) => {
   const vratiUOcenjene = async (prijava) => {
     try {
       await axios.patch(
-        "http://digitalmark6.herokuapp.com/api/prijave/hr/uocenjeno",
+        "https://digitalmark6.herokuapp.com/api/prijave/hr/uocenjeno",
         {
           prijava_id: prijava._id,
         },
@@ -54,7 +54,7 @@ export const PrijaveProvider = ({ children }) => {
   const smestiUFinalno = async (prijava) => {
     try {
       await axios.patch(
-        "http://digitalmark6.herokuapp.com/api/prijave/hr/ufinalno",
+        "https://digitalmark6.herokuapp.com/api/prijave/hr/ufinalno",
         {
           prijava_id: prijava._id,
         },
@@ -70,7 +70,7 @@ export const PrijaveProvider = ({ children }) => {
   const oznaci = async (prijava) => {
     try {
       await axios.patch(
-        "http://digitalmark6.herokuapp.com/api/prijave/oznaci",
+        "https://digitalmark6.herokuapp.com/api/prijave/oznaci",
         { prijava_id: prijava._id },
         {
           headers: { userId: localStorage.getItem("token") },
@@ -86,7 +86,7 @@ export const PrijaveProvider = ({ children }) => {
   const staviUSmestene = async (prijava) => {
     try {
       await axios.patch(
-        "http://digitalmark6.herokuapp.com/api/prijave/log/usmestene",
+        "https://digitalmark6.herokuapp.com/api/prijave/log/usmestene",
         {
           prijava_id: prijava._id,
         },
@@ -104,7 +104,7 @@ export const PrijaveProvider = ({ children }) => {
   const vratiIzSmestenih = async (prijava) => {
     try {
       await axios.patch(
-        "http://digitalmark6.herokuapp.com/api/prijave/log/unesmestene",
+        "https://digitalmark6.herokuapp.com/api/prijave/log/unesmestene",
         {
           prijava_id: prijava._id,
         },
