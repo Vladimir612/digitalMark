@@ -2,19 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
-import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { PrijaveProvider } from "./data/prijaveContext";
 import { AdminInfoProvider } from "./data/adminInfoContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
+    <HashRouter basename="/">
       <AdminInfoProvider>
         <PrijaveProvider>
           <App />
         </PrijaveProvider>
       </AdminInfoProvider>
-    </Router>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
