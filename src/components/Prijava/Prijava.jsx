@@ -184,7 +184,8 @@ const Prijava = (props) => {
                     />
                   </div>
                   {adminInfo.dozvola === 2 &&
-                    props.data.statusHR === "ocenjen" && (
+                    (props.data.statusHR === "ocenjen" ||
+                      props.data.zelja.panel.ocena !== 0) && (
                       <CustomButton
                         onClick={() =>
                           infoZaLog(
@@ -292,14 +293,16 @@ const Prijava = (props) => {
                   Vrati u ocenjene
                 </CustomButton>
               )}
-              {props.data.statusHR === "ocenjen" && adminInfo.dozvola === 2 && (
-                <CustomButton
-                  disabled={jelMozeUFinalno}
-                  onClick={() => smestiUFinalno(props.data)}
-                >
-                  Smesti u finalno
-                </CustomButton>
-              )}
+              {(props.data.statusHR === "ocenjen" ||
+                props.data.zelja.panel.ocena !== 0) &&
+                adminInfo.dozvola === 2 && (
+                  <CustomButton
+                    disabled={jelMozeUFinalno}
+                    onClick={() => smestiUFinalno(props.data)}
+                  >
+                    Smesti u finalno
+                  </CustomButton>
+                )}
               {props.data.statusLogistika === "smesten" &&
                 adminInfo.dozvola === 3 && (
                   <CustomButton onClick={() => vratiIzSmestenih(props.data)}>
