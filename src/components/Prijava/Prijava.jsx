@@ -102,7 +102,7 @@ const Prijava = (props) => {
                   </ul>
                 </div>
               )}
-              {props.data.zelja.radionice.motivaciono !== "" && (
+              {props.data.zelja.radionice.sveRadionice.length !== 0 && (
                 <div className="radionice">
                   <h2>Radionice</h2>
                   <ul>
