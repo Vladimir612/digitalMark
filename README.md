@@ -11,10 +11,12 @@
 <p>Here people from HR or logistics does work</p>
 
 <h4>HR screen</h4>
+<p>It contains tabs "neocenjeni (unmarked)" and "ocenjeni (marked)"</p>
 
 ![image](https://user-images.githubusercontent.com/53167193/169710845-ca78bd3f-8525-4182-97a7-3ee9c60c8913.png)
 
 <h4>Logistics screen</h4>
+<p>It contains tabs "nisu smesteni (not accommodated)" and "smesteni (accommodated)"</p>
 
 ![image](https://user-images.githubusercontent.com/53167193/169711140-0187f181-76b8-4dc1-853d-39c8c27853b1.png)
 
