@@ -1,13 +1,13 @@
 import React from "react";
-import "./Lopta.scss";
+import "./Ball.scss";
 
-const Lopta = (props) => {
+const Ball = (props) => {
   return (
     <div
-      className={`lopta ${props.boja}`}
+      className={`ball ${props.boja}`}
       style={{ width: props.width, height: props.height }}
     ></div>
   );
 };
 
-export default Lopta;
+export default Ball;

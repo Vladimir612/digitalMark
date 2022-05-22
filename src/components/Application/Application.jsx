@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import "./Prijava.scss";
-import CustomButton from "./../../Utilities/CustomButton";
+import "./Application.scss";
+import CustomButton from "../../Utilities/CustomButton";
 import { IoIosClose } from "react-icons/io";
 import { BsFlagFill, BsFlag } from "react-icons/bs";
-import { usePrijave } from "../../data/prijaveContext";
+import { usePrijave } from "../../data/applicationsContext";
 import { useAdminInfo } from "../../data/adminInfoContext";
 
-const Prijava = (props) => {
+const Application = (props) => {
   const {
     oznaci,
     oceni,
@@ -20,11 +20,11 @@ const Prijava = (props) => {
 
   const { adminInfo } = useAdminInfo();
 
-  const [vidljivoDetaljnije, setVidljivoDetaljnije] = useState(false);
-  const [ocenaPanel, setOcenaPanel] = useState(props.data.zelja.panel.ocena);
+  const [showMore, setShowMore] = useState(false);
+  const [panelMark, setOcenaPanel] = useState(props.data.zelja.panel.ocena);
   const errorPoruka = "Morate uneti vrednost izmedju 0 i 25";
 
-  //info-za-logistiku
+  //info-for-logistics
   const [ucestvujeNaPanelu, setUcestvujeNaPanelu] = useState(
     props.data.infoZaLogistiku.panel
   );
@@ -37,9 +37,9 @@ const Prijava = (props) => {
 
   const [oznacen, setOznacen] = useState(props.data.oznacen);
 
-  const handleOcena = () => {
-    oceni(props.data, ocenaPanel);
-    setVidljivoDetaljnije(false);
+  const handleMark = () => {
+    oceni(props.data, panelMark);
+    setShowMore(false);
   };
 
   const jelMozeUFinalno =
@@ -49,14 +49,14 @@ const Prijava = (props) => {
 
   return (
     <>
-      {vidljivoDetaljnije && (
+      {showMore && (
         <div className="modal-detaljnije">
           <div className="modal-content">
-            <div className="zatvori-dugme">
+            <div className="close-btn">
               <IoIosClose
                 size={40}
                 color="#cc203a"
-                onClick={() => setVidljivoDetaljnije(false)}
+                onClick={() => setShowMore(false)}
               />
             </div>
 
@@ -119,8 +119,8 @@ const Prijava = (props) => {
                 </div>
               )}
             </div>
-            <div className="ostalo">
-              <div className="hr-posao">
+            <div className="other">
+              <div className="hr-tasks">
                 {(props.data.statusHR === "ocenjen" ||
                   props.data.statusHR === "neocenjen") &&
                   adminInfo.dozvola === 2 && (
@@ -129,13 +129,13 @@ const Prijava = (props) => {
                       <div>
                         <input
                           type="text"
-                          className="ocena-input"
-                          value={ocenaPanel}
+                          className="mark-input"
+                          value={panelMark}
                           onChange={(e) => setOcenaPanel(e.target.value)}
                         />
                         <CustomButton
-                          onClick={handleOcena}
-                          disabled={ocenaPanel <= 0 || ocenaPanel > 25}
+                          onClick={handleMark}
+                          disabled={panelMark <= 0 || panelMark > 25}
                         >
                           Oceni
                         </CustomButton>
@@ -144,7 +144,7 @@ const Prijava = (props) => {
                     </div>
                   )}
 
-                <div className="info-za-logistiku">
+                <div className="info-for-logistics">
                   <h3>Info za logistiku</h3>
                   <div className="panel">
                     <span>Panel: </span>
@@ -205,17 +205,17 @@ const Prijava = (props) => {
                     )}
                 </div>
               </div>
-              <div className="detaljnije-osnovne-info">
+              <div className="more-basic-info">
                 <h2>Dodatne informacije</h2>
-                <div className="broj-tel">
+                <div>
                   <h4>Broj telefona: </h4>
                   <p>{props.data.brojTelefona}</p>
                 </div>
-                <div className="godina-studija">
+                <div>
                   <h4>Godina studija: </h4>
                   <p>{props.data.godinaStudija}</p>
                 </div>
-                <div className="newsletter">
+                <div>
                   <h4>Newsletter: </h4>
                   <p>
                     {props.data.newsletter
@@ -224,7 +224,7 @@ const Prijava = (props) => {
                   </p>
                 </div>
               </div>
-              <div className="napomena-container">
+              <div className="note-container">
                 <textarea
                   className="napomena"
                   placeholder="Napomena..."
@@ -241,9 +241,9 @@ const Prijava = (props) => {
           </div>
         </div>
       )}
-      <div className="kartica-za-prijavu">
+      <div className="application-card">
         <div className="top">
-          <div className="imePrezime">{props.data.imePrezime}</div>
+          <div>{props.data.imePrezime}</div>
 
           <div
             className="flagged"
@@ -261,15 +261,13 @@ const Prijava = (props) => {
         </div>
 
         <div className="middle">
-          <div className="prijava-osnovno">
+          <div className="application-basic">
             <h4>Privatan mejl:</h4>
-            <p className="priv_mejl">{props.data.emailPriv}</p>
+            <p>{props.data.emailPriv}</p>
             {props.data.zelja.techChallenge.emailFon !== "" && (
               <>
                 <h4>Fonov mejl:</h4>
-                <p className="fon_mejl">
-                  {props.data.zelja.techChallenge.emailFon}
-                </p>
+                <p>{props.data.zelja.techChallenge.emailFon}</p>
               </>
             )}
 
@@ -285,7 +283,7 @@ const Prijava = (props) => {
         <div className="buttons">
           {
             <>
-              <CustomButton onClick={() => setVidljivoDetaljnije(true)}>
+              <CustomButton onClick={() => setShowMore(true)}>
                 Prikaži detaljnije
               </CustomButton>
               {props.data.statusHR === "finalno" && adminInfo.dozvola === 2 && (
@@ -323,4 +321,4 @@ const Prijava = (props) => {
   );
 };
 
-export default Prijava;
+export default Application;

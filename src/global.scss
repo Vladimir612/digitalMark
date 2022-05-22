@@ -1,25 +1,13 @@
 //boje
-$pozadina: #17181e;
-$svetlija_pozadina1: hsl(233, 14%, 12%);
-$svetlija_pozadina2: hsl(233, 22%, 17%);
+$background: #17181e;
 
-$tekst: white;
+$text: #fff;
 
-$crvena: #cc203a;
-$bela: #fceff1;
+$red: #cc203a;
+$white: #fceff1;
 
-$aktivni_link: #fff;
-
-$pozadina_tamna: #14191b;
-$pozadina_siva: #b4afb3;
-
-$naslov_tamna: #fff;
-$tekst_tamna: #ffffffb3;
-
-$naslov_siva: #14191b;
-$tekst_siva: #14191bb3;
-
-$pozadina_nav_oprojektu: #292929;
+$background_dark: #14191b;
+$background_gray: #b4afb3;
 
 //mixins
 @mixin box-center($direction: row, $justify: center) {

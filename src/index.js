@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
 import { HashRouter } from "react-router-dom";
-import { PrijaveProvider } from "./data/prijaveContext";
+import { PrijaveProvider } from "./data/applicationsContext";
 import { AdminInfoProvider } from "./data/adminInfoContext";
 
 ReactDOM.render(

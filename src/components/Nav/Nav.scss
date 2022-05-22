@@ -43,18 +43,18 @@
         font-size: 1.35rem;
         padding-left: 0.5rem;
       }
-      &.aktivan {
-        background: $crvena;
+      &.active {
+        background: $red;
         border-top-left-radius: 1rem;
         border-bottom-left-radius: 1rem;
-        .kvadrat {
+        .square {
           width: 1rem;
           height: 1rem;
-          background: $crvena;
+          background: $red;
           position: absolute;
           right: 0;
         }
-        .kvadrat::after {
+        .square::after {
           content: "";
           display: block;
           position: absolute;
@@ -64,16 +64,16 @@
           width: 1rem;
           height: 1rem;
         }
-        .kvadrat-1::after {
+        .square-1::after {
           border-bottom-right-radius: 0.5rem;
         }
-        .kvadrat-2::after {
+        .square-2::after {
           border-top-right-radius: 0.5rem;
         }
-        .kvadrat-1 {
+        .square-1 {
           top: -1rem;
         }
-        .kvadrat-2 {
+        .square-2 {
           bottom: -1rem;
         }
       }
@@ -83,7 +83,7 @@
     .profile-more-details {
       width: 15rem;
       border-radius: 2rem;
-      background: $crvena;
+      background: $red;
       color: #fff;
       @include box-center($direction: column);
       align-items: flex-start;
@@ -95,14 +95,14 @@
         background: #fff;
         border-radius: 2rem;
         padding: 0.4rem 1.9rem;
-        color: $crvena;
+        color: $red;
         outline: none;
         border: none;
         box-shadow: 2px 2px 9px #000000cc;
       }
     }
     @include box-center($justify: flex-start);
-    background: $bela;
+    background: $white;
     padding: 0.8rem 1rem;
     width: 100%;
     position: absolute;
@@ -113,12 +113,12 @@
       align-items: center;
     }
     .profile-name {
-      color: $crvena;
+      color: $red;
       font-size: 1.3rem;
       font-weight: 500;
     }
     .job {
-      color: $crvena;
+      color: $red;
       font-size: 1.3rem;
       font-weight: 500;
       padding-left: 0.5rem;

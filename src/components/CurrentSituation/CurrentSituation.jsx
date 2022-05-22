@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import KarticaTrenutnoStanje from "./KarticaTrenutnoStanje";
-import "./TrenutnoStanje.scss";
-import { usePrijave } from "./../../data/prijaveContext";
+import CardCurrentSituation from "./CardCurrentSituation";
+import "./CurrentSituation.scss";
+import { usePrijave } from "../../data/applicationsContext";
 
-const TrenutnoStanje = () => {
+const CurrentSituation = () => {
   const { prijave } = usePrijave();
   //Radionice
   const [countMachineLearning, setCountMachineLearning] = useState(0);
@@ -32,7 +32,7 @@ const TrenutnoStanje = () => {
 
   const [countPanel, setCountPanel] = useState(0);
 
-  const prebrojLjude = () => {
+  const countPeople = () => {
     prijave &&
       prijave.forEach((prijava) => {
         //radionice
@@ -109,62 +109,65 @@ const TrenutnoStanje = () => {
   };
 
   useEffect(() => {
-    prebrojLjude();
+    countPeople();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div className="ts-container">
-      <h2 className="section-naslov">Radionice</h2>
+    <div className="cs-container">
+      <h2 className="section-title">Radionice</h2>
       <div className="radionice">
-        <KarticaTrenutnoStanje
-          broj={countMachineLearning}
-          naziv="Machine learning"
+        <CardCurrentSituation
+          number={countMachineLearning}
+          title="Machine learning"
         />
-        <KarticaTrenutnoStanje
-          broj={count3D}
-          naziv="Uvod u 3D Game Development"
+        <CardCurrentSituation
+          number={count3D}
+          title="Uvod u 3D Game Development"
         />
-        <KarticaTrenutnoStanje
-          broj={countRadionicaMonetizacija}
-          naziv="Izazovi u B2C monetizaciji 5G usluga"
+        <CardCurrentSituation
+          number={countRadionicaMonetizacija}
+          title="Izazovi u B2C monetizaciji 5G usluga"
         />
-        <KarticaTrenutnoStanje
-          broj={countRadionicaSpring}
-          naziv="Spring Boot"
+        <CardCurrentSituation
+          number={countRadionicaSpring}
+          title="Spring Boot"
         />
-        <KarticaTrenutnoStanje
-          broj={countRadionicaAngular}
-          naziv="Uvod u Angular"
+        <CardCurrentSituation
+          number={countRadionicaAngular}
+          title="Uvod u Angular"
         />
-        <KarticaTrenutnoStanje
-          broj={countRadionicaDevops}
-          naziv="DevOps pristup razvoju softvera"
+        <CardCurrentSituation
+          number={countRadionicaDevops}
+          title="DevOps pristup razvoju softvera"
         />
       </div>
-      <h2 className="section-naslov">Tech Challenge</h2>
+      <h2 className="section-title">Tech Challenge</h2>
       <div className="radionice">
-        <KarticaTrenutnoStanje broj={countTechRaiffeisen} naziv="Raiffeisen" />
-        <KarticaTrenutnoStanje broj={countTechA1} naziv="A1" />
-        <KarticaTrenutnoStanje broj={countTechSemos} naziv="Semos" />
-        <KarticaTrenutnoStanje broj={countTechAdacta} naziv="Adacta" />
-        <KarticaTrenutnoStanje broj={countTechPrime} naziv="Prime" />
-        <KarticaTrenutnoStanje broj={countTechEyesee} naziv="Eyesee" />
+        <CardCurrentSituation number={countTechRaiffeisen} title="Raiffeisen" />
+        <CardCurrentSituation number={countTechA1} title="A1" />
+        <CardCurrentSituation number={countTechSemos} title="Semos" />
+        <CardCurrentSituation number={countTechAdacta} title="Adacta" />
+        <CardCurrentSituation number={countTechPrime} title="Prime" />
+        <CardCurrentSituation number={countTechEyesee} title="Eyesee" />
       </div>
-      <h2 className="section-naslov">Speed dating</h2>
+      <h2 className="section-title">Speed dating</h2>
       <div className="radionice">
-        <KarticaTrenutnoStanje broj={countSpeedRaiffeisen} naziv="Raiffeisen" />
-        <KarticaTrenutnoStanje broj={countSpeedA1} naziv="A1" />
-        <KarticaTrenutnoStanje broj={countSpeedSemos} naziv="Semos" />
-        <KarticaTrenutnoStanje broj={countSpeedAdacta} naziv="Adacta" />
-        <KarticaTrenutnoStanje broj={countSpeedPrime} naziv="Prime" />
-        <KarticaTrenutnoStanje broj={countSpeedEyesee} naziv="Eyesee" />
+        <CardCurrentSituation
+          number={countSpeedRaiffeisen}
+          title="Raiffeisen"
+        />
+        <CardCurrentSituation number={countSpeedA1} title="A1" />
+        <CardCurrentSituation number={countSpeedSemos} title="Semos" />
+        <CardCurrentSituation number={countSpeedAdacta} title="Adacta" />
+        <CardCurrentSituation number={countSpeedPrime} title="Prime" />
+        <CardCurrentSituation number={countSpeedEyesee} title="Eyesee" />
       </div>
-      <h2 className="section-naslov">Panel</h2>
+      <h2 className="section-title">Panel</h2>
       <div className="radionice">
-        <KarticaTrenutnoStanje broj={countPanel} naziv="Panel" />
+        <CardCurrentSituation number={countPanel} title="Panel" />
       </div>
     </div>
   );
 };
 
-export default TrenutnoStanje;
+export default CurrentSituation;

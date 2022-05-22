@@ -9,9 +9,9 @@
   box-shadow: 2px 2px 5px 0px #474747a7;
   cursor: pointer;
   color: #e7ecf5;
-  background-color: $crvena;
+  background-color: $red;
   &.disabled {
     cursor: initial;
-    background: $pozadina-siva;
+    background: $background_gray;
   }
 }

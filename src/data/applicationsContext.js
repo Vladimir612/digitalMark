@@ -119,13 +119,13 @@ export const PrijaveProvider = ({ children }) => {
     }
   };
 
-  const oceni = async (prijava, ocena) => {
+  const oceni = async (prijava, mark) => {
     try {
       await axios.patch(
         "https://digitalmark6.herokuapp.com/api/prijave/oceni",
         {
           prijavaId: prijava._id,
-          ocenaPanel: ocena,
+          ocenaPanel: mark,
         },
         {
           headers: { userId: localStorage.getItem("token") },

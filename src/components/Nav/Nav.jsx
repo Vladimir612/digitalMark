@@ -16,13 +16,13 @@ import { useAdminInfo } from "./../../data/adminInfoContext";
 import { motion } from "framer-motion";
 
 const Nav = (props) => {
-  const { aktivanTab, setAktivanTab } = props;
+  const { activeTab, setActiveTab } = props;
   const [visibleUserInfo, setVisibleUserInfo] = useState(false);
   let navigate = useNavigate();
 
   const { adminInfo, setAdminInfo } = useAdminInfo();
 
-  const handleOdjava = () => {
+  const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     localStorage.removeItem("pass");
@@ -35,6 +35,7 @@ const Nav = (props) => {
   let username = "";
   let forname = "";
   let lastname = "";
+
   if (!isEmpty) {
     username = adminInfo.email.split("@")[0];
     forname = username.split(".")[0];
@@ -58,88 +59,88 @@ const Nav = (props) => {
       <ul className="nav-links">
         {(adminInfo.dozvola === 2 || adminInfo.dozvola === 1) && (
           <li
-            className={aktivanTab === 1 ? "aktivan" : ""}
-            onClick={() => setAktivanTab(1)}
+            className={activeTab === 1 ? "active" : ""}
+            onClick={() => setActiveTab(1)}
           >
-            {aktivanTab === 1 && <span className="kvadrat kvadrat-1"></span>}
+            {activeTab === 1 && <span className="square square-1"></span>}
             <BsClipboardX size={30} color="white" />
             {props.otvorenNav && (
               <span className="link-name">Neocenjene prijave</span>
             )}
-            {aktivanTab === 1 && <span className="kvadrat kvadrat-2"></span>}
+            {activeTab === 1 && <span className="square square-2"></span>}
           </li>
         )}
 
         {(adminInfo.dozvola === 2 || adminInfo.dozvola === 1) && (
           <li
-            className={aktivanTab === 2 ? "aktivan" : ""}
-            onClick={() => setAktivanTab(2)}
+            className={activeTab === 2 ? "active" : ""}
+            onClick={() => setActiveTab(2)}
           >
-            {aktivanTab === 2 && <span className="kvadrat kvadrat-1"></span>}
+            {activeTab === 2 && <span className="square square-1"></span>}
             <BsClipboardCheck size={30} color="white" />
             {props.otvorenNav && (
               <span className="link-name">Ocenjene prijave</span>
             )}
-            {aktivanTab === 2 && <span className="kvadrat kvadrat-2"></span>}
+            {activeTab === 2 && <span className="square square-2"></span>}
           </li>
         )}
 
         <li
-          className={aktivanTab === 3 ? "aktivan" : ""}
-          onClick={() => setAktivanTab(3)}
+          className={activeTab === 3 ? "active" : ""}
+          onClick={() => setActiveTab(3)}
         >
-          {aktivanTab === 3 && <span className="kvadrat kvadrat-1"></span>}
+          {activeTab === 3 && <span className="square square-1"></span>}
           <AiOutlineFileDone size={30} color="white" />
           {props.otvorenNav && <span className="link-name">Finalno</span>}
-          {aktivanTab === 3 && <span className="kvadrat kvadrat-2"></span>}
+          {activeTab === 3 && <span className="square square-2"></span>}
         </li>
 
         <li
-          className={aktivanTab === 4 ? "aktivan" : ""}
-          onClick={() => setAktivanTab(4)}
+          className={activeTab === 4 ? "active" : ""}
+          onClick={() => setActiveTab(4)}
         >
-          {aktivanTab === 4 && <span className="kvadrat kvadrat-1"></span>}
+          {activeTab === 4 && <span className="square square-1"></span>}
           <BsStarFill size={30} color="white" />
           {props.otvorenNav && <span className="link-name">Označene</span>}
-          {aktivanTab === 4 && <span className="kvadrat kvadrat-2"></span>}
+          {activeTab === 4 && <span className="square square-2"></span>}
         </li>
 
         {(adminInfo.dozvola === 3 || adminInfo.dozvola === 1) && (
           <li
-            className={aktivanTab === 5 ? "aktivan" : ""}
-            onClick={() => setAktivanTab(5)}
+            className={activeTab === 5 ? "active" : ""}
+            onClick={() => setActiveTab(5)}
           >
-            {aktivanTab === 5 && <span className="kvadrat kvadrat-1"></span>}
+            {activeTab === 5 && <span className="square square-1"></span>}
             <BsPeople size={30} color="white" />
             {props.otvorenNav && (
               <span className="link-name">Nisu smešteni</span>
             )}
-            {aktivanTab === 5 && <span className="kvadrat kvadrat-2"></span>}
+            {activeTab === 5 && <span className="square square-2"></span>}
           </li>
         )}
 
         {(adminInfo.dozvola === 3 || adminInfo.dozvola === 1) && (
           <li
-            className={aktivanTab === 6 ? "aktivan" : ""}
-            onClick={() => setAktivanTab(6)}
+            className={activeTab === 6 ? "active" : ""}
+            onClick={() => setActiveTab(6)}
           >
-            {aktivanTab === 6 && <span className="kvadrat kvadrat-1"></span>}
+            {activeTab === 6 && <span className="square square-1"></span>}
             <BsPeopleFill size={30} color="white" />
             {props.otvorenNav && <span className="link-name">Smešteni</span>}
-            {aktivanTab === 6 && <span className="kvadrat kvadrat-2"></span>}
+            {activeTab === 6 && <span className="square square-2"></span>}
           </li>
         )}
 
         <li
-          className={aktivanTab === 8 ? "aktivan" : ""}
-          onClick={() => setAktivanTab(8)}
+          className={activeTab === 8 ? "active" : ""}
+          onClick={() => setActiveTab(8)}
         >
-          {aktivanTab === 8 && <span className="kvadrat kvadrat-1"></span>}
+          {activeTab === 8 && <span className="square square-1"></span>}
           <BsClipboardData size={30} color="white" />
           {props.otvorenNav && (
             <span className="link-name">Trenutno stanje</span>
           )}
-          {aktivanTab === 8 && <span className="kvadrat kvadrat-2"></span>}
+          {activeTab === 8 && <span className="square square-2"></span>}
         </li>
       </ul>
       <div className="profile-details">
@@ -159,8 +160,8 @@ const Nav = (props) => {
               whileTap={{
                 scale: 0.95,
               }}
-              className="dugme izloguj-se"
-              onClick={handleOdjava}
+              className="btn"
+              onClick={handleLogout}
               style={{ cursor: "pointer" }}
             >
               Izloguj se

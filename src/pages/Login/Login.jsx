@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Login.scss";
-import Lopta from "./../../Utilities/Lopta/Lopta";
+import Ball from "../../Utilities/Ball/Ball";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useAdminInfo } from "./../../data/adminInfoContext";
@@ -61,7 +61,7 @@ const Login = () => {
           <div className="error-poruka">{errorPoruka}</div>
 
           <motion.button
-            className="dugme crveno"
+            className="btn red"
             whileHover={{
               scale: 1.1,
             }}
@@ -78,18 +78,18 @@ const Login = () => {
         </form>
       </div>
 
-      <div className="lopte">
-        <div className="prva-grupa">
-          <Lopta boja="bela" width="3rem" height="3rem" />
-          <Lopta boja="crvena" width="5rem" height="5rem" />
+      <div className="balls">
+        <div className="first-group">
+          <Ball boja="white" width="3rem" height="3rem" />
+          <Ball boja="red" width="5rem" height="5rem" />
         </div>
-        <div className="druga-grupa">
-          <Lopta boja="bela" width="6.5rem" height="6.5rem" />
-          <Lopta boja="crvena" width="14rem" height="14rem" />
+        <div className="second-group">
+          <Ball boja="white" width="6.5rem" height="6.5rem" />
+          <Ball boja="red" width="14rem" height="14rem" />
         </div>
-        <div className="treca-grupa">
-          <Lopta boja="transparentna" width="4.5rem" height="4.5rem" />
-          <Lopta boja="crvena" width="5rem" height="5rem" />
+        <div className="third-group">
+          <Ball boja="transparent" width="4.5rem" height="4.5rem" />
+          <Ball boja="red" width="5rem" height="5rem" />
         </div>
       </div>
     </div>
