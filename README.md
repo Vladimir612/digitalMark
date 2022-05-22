@@ -1,6 +1,7 @@
 <h2>Digital mark</h2>
 
-<p>This web app is designed to enable HR team and logistics to complete their work for the C2S project more easily.</p>
+<p>This web app is designed to enable HR team and logistics to complete their work for the C2S project more easily. 
+  Backend for this app is at </p> https://github.com/Vladimir612/c2s-back
 
 <h3>Login page</h2>
 <p>Login page will only enable people from organisation to see data</p>
